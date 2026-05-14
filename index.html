@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>梦幻西游战斗记录板</title>
+    <link rel="stylesheet" href="styles.css?v=2026051404">
+  </head>
+  <body>
+    <main class="app-shell">
+      <header class="toolbar" aria-label="战斗记录控制栏">
+        <div>
+          <p class="eyebrow">梦幻西游手游</p>
+          <h1>战斗实时记录板</h1>
+        </div>
+        <div class="toolbar-controls">
+          <div class="limit-control">
+            <button id="openLimitButton" class="limit-control-button" type="button">增加上限</button>
+            <div id="limitPanel" class="limit-panel" hidden>
+              <label>
+                单位
+                <select id="limitUnitSelect"></select>
+              </label>
+              <label>
+                项目
+                <select id="limitKindSelect">
+                  <option value="medicine">用药</option>
+                  <option value="summon">出宠</option>
+                </select>
+              </label>
+              <button id="applyLimitButton" type="button">确认 +1</button>
+            </div>
+          </div>
+          <button id="resetButton" class="reset-button" type="button">重置本局</button>
+        </div>
+      </header>
+
+      <section class="speed-panel" aria-label="速度顺位概览">
+        <span>未分配速度</span>
+        <div id="availableSpeeds" class="speed-list"></div>
+      </section>
+
+      <section class="battlefield" aria-label="双方站位棋盘">
+        <article class="side-panel enemy">
+          <div class="side-heading">
+            <div>
+              <h2>敌方</h2>
+              <b id="enemyAdvantage" class="formation-advantage">平</b>
+            </div>
+            <label class="side-formation">
+              阵法
+              <select id="enemyFormationSelect"></select>
+            </label>
+          </div>
+          <div id="enemyBoard" class="arena-board" data-side="enemy"></div>
+        </article>
+
+        <article class="side-panel ally">
+          <div class="side-heading">
+            <div>
+              <h2>我方</h2>
+              <b id="allyAdvantage" class="formation-advantage">平</b>
+            </div>
+            <label class="side-formation">
+              阵法
+              <select id="allyFormationSelect"></select>
+            </label>
+          </div>
+          <div id="allyBoard" class="arena-board" data-side="ally"></div>
+        </article>
+      </section>
+    </main>
+
+    <template id="unitTemplate">
+      <section class="unit-card">
+        <header class="unit-header">
+          <strong class="unit-name"></strong>
+        </header>
+
+        <div class="counter-row" data-kind="medicine">
+          <span class="counter-label">用药</span>
+          <button class="counter-minus" type="button" aria-label="减少用药次数">-</button>
+          <span class="counter-value"></span>
+          <button class="counter-plus" type="button" aria-label="增加用药次数">+</button>
+        </div>
+
+        <div class="counter-row" data-kind="summon">
+          <span class="counter-label">出宠</span>
+          <button class="counter-minus" type="button" aria-label="减少出宠次数">-</button>
+          <span class="counter-value"></span>
+          <button class="counter-plus" type="button" aria-label="增加出宠次数">+</button>
+        </div>
+
+        <label class="speed-select">
+          <span>速度</span>
+          <select></select>
+        </label>
+      </section>
+    </template>
+
+    <script src="script.js?v=2026051404"></script>
+  </body>
+</html>
